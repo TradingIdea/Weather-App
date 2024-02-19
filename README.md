@@ -1,4 +1,4 @@
-**weather application using Maui App**
+# **Weather application using Maui App**
 
 I developed a mobile weather application using the Maui App framework. This app retrieves weather information from the https://open-meteo.com API. 
 The app allows users to search for a city by name and displays detailed weather information for that city,
