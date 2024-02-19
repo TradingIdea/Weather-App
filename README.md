@@ -10,4 +10,4 @@ The application leverages the power of the Maui App framework to deliver a seaml
 I am excited to share this weather application on GitHub, along with its source code, allowing others to explore and potentially contribute to its development. Feel free to explore the app's functionalities and provide any feedback or suggestions for improvement. Happy coding! 
 
 
-To properly display animated weather images such as rain, snow, etc., users need to download them and place them in the "row" folder within the app directory
+To properly display animated weather images such as rain, snow, etc., users need to download them and place them in the "row" folder within the app directory.
