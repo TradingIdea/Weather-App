@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp4.MVVM.Views.WeatherView"
+             xmlns:converter="clr-namespace:MauiApp4.MVVM.Convertor"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             Title="WeatherView">
+
+
+    <ContentPage.Resources>
+        <converter:CodeToWeatherConverter x:Key="CodeToWeatherConverter"/>
+        <converter:CodeToLottiefileConverter x:Key="CodeToLottiefileConverter"/>
+    </ContentPage.Resources>
+
+
+
+    <Grid RowDefinitions=".08*,.1*,.5*,.1*,auto" Margin="15">
+        <Grid>
+            <Frame/>
+            <SearchBar x:Name="SearchBar" Placeholder="Search" VerticalOptions="Center"
+                       SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Source={x:Reference SearchBar},Path=Text}"/>
+        </Grid>
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}" IsVisible="{Binding IsVisible}">
+            <Label Text="{Binding PlaceName}" Style="{StaticResource title}"/>
+            <Label Text="{Binding Date ,StringFormat='{0:MMMM dd,yyyy}'}"/>
+        </VerticalStackLayout>
+
+        <skia:SKLottieView Source="{Binding WeatherData.current.weather_code,Converter={StaticResource CodeToLottiefileConverter}}" RepeatCount="-1" Grid.Row="2"/>
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,*,*" IsVisible="{Binding IsVisible}">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Text="Temp" Style="{StaticResource WeatherTitle}"/>
+                <Label Text="{Binding WeatherData.current.temperature_2m,StringFormat='{0}°C'}" Style="{StaticResource WeatherValue}"/>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10">
+                <Label Text="Wind" Style="{StaticResource WeatherTitle}"/>
+                <Label Text="{Binding  WeatherData.current.wind_speed_10m,StringFormat='{0}Km/h'}" Style="{StaticResource WeatherValue}"/>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="10">
+                <Label Text="Weather" Style="{StaticResource WeatherTitle}"/>
+                <Label Text="{Binding WeatherData.current.weather_code,Converter={StaticResource CodeToWeatherConverter}}" Style="{StaticResource WeatherValue}"/>
+            </VerticalStackLayout>
+        </Grid>
+
+        <CollectionView Grid.Row="4" ItemsSource="{Binding WeatherData.daily2}">
+       
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Style="{StaticResource Card}">
+                        <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                            <skia:SKLottieView Source="{Binding weather_code,Converter={StaticResource CodeToLottiefileConverter}}" IsAnimationEnabled="False" WidthRequest="50" HeightRequest="50"/>
+                            <Label Text="{Binding time}" TextColor="{StaticResource Yellow100Accent}"/>
+                            <Label Text="{Binding temperature_2m_max,StringFormat='{0}°C'}"/>
+                            <Label Text="{Binding weather_code,Converter={StaticResource CodeToWeatherConverter}}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Grid.RowSpan="5" Margin="-5" BackgroundColor="Black" Opacity="0.9" IsVisible="{Binding IsLoding}">
+            <ActivityIndicator IsRunning="True" VerticalOptions="Center"/>
+        </Grid>
+
+        
+    </Grid>
+</ContentPage>

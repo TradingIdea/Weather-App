@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp4.StylePage"
+             Title="StylePage">
+    <ContentPage.Resources>
+        <Color x:Key="BgColor">#323031</Color>
+        <Color x:Key="textColor">#ffc857</Color>
+
+        <!--<Style TargetType="VerticalStackLayout">
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Spacing" Value="25"/>
+            <Setter Property="Padding" Value="30,0"/>
+        </Style>-->
+        <Style TargetType="StackBase" ApplyToDerivedTypes="True">
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Spacing" Value="25"/>
+            <Setter Property="Padding" Value="30,0"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource BgColor}"/>
+            <Setter Property="TextColor" Value="{StaticResource textColor}"/>
+        </Style>
+
+    </ContentPage.Resources>
+
+
+
+    <ScrollView>
+        <!--<ScrollView.Resources>
+            <Style TargetType="VerticalStackLayout">
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ScrollView.Resources>-->
+
+        <VerticalStackLayout>
+
+            <!--<Button Text="login" Style="{StaticResource ButtonStyle}"/>
+            <Button Text="Go to website">
+                <Button.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="BackgroundColor" Value="Red"/>
+                    </Style>
+                </Button.Resources>
+            </Button>-->
+            <Button Text="login" />
+            <Button Text="Go to website" Style="{StaticResource SpecialButton}"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

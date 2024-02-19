@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp4.ClassStyle"
+             Title="ClassStyle">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button" Class="textStyle">
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style TargetType="Button" Class="colorStyle1">
+            <Setter Property="BackgroundColor" Value="Red"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Button" Class="colorStyle2">
+            <Setter Property="BackgroundColor" Value="Purple"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=DarkBlue ,Dark=White}"/>
+        </Style>
+    </ContentPage.Resources>
+    
+<VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Button Text="button 1" StyleClass="textStyle,colorStyle1"/>
+        <Button Text="button 2" StyleClass="textStyle,colorStyle2"/>
+
+        <Label Text="Hello" FontSize="30"/>
+    </VerticalStackLayout>
+</ContentPage>
